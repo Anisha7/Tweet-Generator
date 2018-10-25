@@ -31,7 +31,7 @@ def play(score) :
     for i in range(2, len(line_list)):
         answer += line_list[i] + " ";
 
-    if (str_equal(definition, answer)): 
+    if (definition == answer): 
         print("You were correct");
         score += 1;
     else:
