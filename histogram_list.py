@@ -12,18 +12,6 @@ example, when given the histogram for The Adventures of Sherlock Holmes, it retu
 A frequency() function that takes a word and histogram argument and returns the number of times that word appears in a text. 
 For example, when given the word "mystery" and the Holmes histogram, it will return the integer 20.'''
 
-# use sets?
-# use dictionaries?
-
-# def inDict(word, d):
-#     if d.get(word) == None:
-#         return False
-#     return True
-
-    #return (word in d)
-def sortList(l):
-    return l
-
 # return true if a is before b
 # return false if a is after b
 def word_order(a,b):
@@ -34,6 +22,7 @@ def word_order(a,b):
         return True
     return False
 
+'''
 def find_by_mid(word, l, i):
     # not found/out of bounds
     if (i >= len(l)) :
@@ -54,13 +43,12 @@ def find_by_mid(word, l, i):
         return find_by_mid(word, l, int(i/2))
     else:
         return find_by_mid(word, l, i*2 -1)
+'''
 
 # get index for where the word is in list l
 # assume list is sorted alphabetically
 # return -1 if not found
 def find(word, l):
-    # i = int(len(l)/2)
-    # return find_by_mid(word, l, i)
     
     for i in range(len(l)):
         if (l[i][0] == word):
