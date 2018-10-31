@@ -15,6 +15,12 @@ For example, when given the word "mystery" and the Holmes histogram, it will ret
 # use sets?
 # use dictionaries?
 
+# cheat way to do it: 
+    # import collections
+    # collections.counter(opened file split by ' ') return a dictionary
+    # .items() converts that to a tuple
+
+# checks if word is in dictionary
 def inDict(word, d):
     if d.get(word) == None:
         return False
@@ -23,10 +29,11 @@ def inDict(word, d):
     #return (word in d)
 
 # returns a dictionary with key: word, value: number of occurances
+# note: check for punctuation 'of?'
 def histogram() :
     words_dict = dict()
-    file = open('prideandprejudice.txt','r')
-    content = (file.read()).split()
+    with open('prideandprejudice.txt') as file:
+        content = (file.read()).split()
     for i in range(len(content)):
         if inDict(content[i], words_dict):
             words_dict[content[i]] = 1 + words_dict[content[i]]
