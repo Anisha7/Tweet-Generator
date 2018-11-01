@@ -117,7 +117,7 @@ def run():
     #print(randomArg(args))
     n = 100000
     d = sample(args, n)
-
+    
     print("Expected:")
     printExpected(expectedProbabilities(args))
 
