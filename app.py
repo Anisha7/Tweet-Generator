@@ -1,6 +1,5 @@
 from flask import Flask
-import dictogram
-import listogram
+import sentenceGenerator
 # from modules import 'listogram.py'
 
 app = Flask(__name__)
