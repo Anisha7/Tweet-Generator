@@ -65,6 +65,7 @@ class LinkedList(object):
         #     curr = curr.next
         
         # return count
+        # (update) faster to track and return size
         return self.size
 
     def append(self, item):
