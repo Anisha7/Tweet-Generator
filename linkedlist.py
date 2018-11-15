@@ -19,6 +19,7 @@ class LinkedList(object):
         """Initialize this linked list and append the given items, if any."""
         self.head = None  # First node
         self.tail = None  # Last node
+        self.size = 0
         # Append given items
         if items is not None:
             for item in items:
@@ -57,14 +58,14 @@ class LinkedList(object):
         Q1: Running time: O(???) Why and under what conditions?
         O(N) because needs to count all the elements, thus loop through entire list"""
         # Loop through all nodes and count one for each
-        curr = self.head
-        count = 0
-        while (curr != None):
-            count += 1
-            curr = curr.next
-            
+        # curr = self.head
+        # count = 0
+        # while (curr != None):
+        #     count += 1
+        #     curr = curr.next
         
-        return count
+        # return count
+        return self.size
 
     def append(self, item):
         """Insert the given item at the tail of this linked list.
@@ -73,6 +74,7 @@ class LinkedList(object):
         # Create new node to hold given item
         # Append node after tail, if it exists
         new_node = Node(item)
+        self.size += 1
         # if empty linked list
         if (self.head == None):
             self.head = new_node
@@ -90,6 +92,7 @@ class LinkedList(object):
         # Create new node to hold given item
         # Prepend node before head, if it exists
         new_node = Node(item)
+        self.size += 1
         if (self.head == None):
             self.head = new_node
             self.tail = self.head
@@ -124,7 +127,7 @@ class LinkedList(object):
         # Update previous node to skip around node with matching data
         # Otherwise raise error to tell user that delete has failed
         # Hint: raise ValueError('Item not found: {}'.format(item))
-
+        self.size -= 1
         curr = self.head
         prev = None
         found = False
@@ -153,6 +156,22 @@ class LinkedList(object):
         if (found == False):
             raise ValueError('Item not found: {}'.format(item))
 
+    def replace(self, item, new_item):
+        # replace an item in linked list
+        # to speed up process, check if item exists
+        found = self.find(item)
+        if (found != None):
+            curr = self.head
+            # iterate over list to find node holding item
+            while (curr != None):
+                # if node is found
+                if (curr.data == item):
+                    # change its value
+                    curr.data = new_item
+                    break
+                # check next node
+                curr = curr.next
+        return
 
 def test_linked_list():
     ll = LinkedList()
