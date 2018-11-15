@@ -158,19 +158,16 @@ class LinkedList(object):
 
     def replace(self, item, new_item):
         # replace an item in linked list
-        # to speed up process, check if item exists
-        found = self.find(item)
-        if (found != None):
-            curr = self.head
-            # iterate over list to find node holding item
-            while (curr != None):
-                # if node is found
-                if (curr.data == item):
-                    # change its value
-                    curr.data = new_item
-                    break
-                # check next node
-                curr = curr.next
+        curr = self.head
+        # iterate over list to find node holding item
+        while (curr != None):
+            # if node is found
+            if (curr.data == item):
+                # change its value
+                curr.data = new_item
+                break
+            # check next node
+            curr = curr.next
         return
 
 def test_linked_list():
