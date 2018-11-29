@@ -26,7 +26,8 @@ class HashTable(object):
 
     def keys(self):
         """Return a list of all keys in this hash table.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        TODO: Running time: O(N*M)(N = # buckets, M = # items in bucket) 
+        Why and under what conditions?: under all conditions because it adds all the keys"""
         # Collect all keys in each bucket
         all_keys = []
         for bucket in self.buckets:
@@ -36,7 +37,8 @@ class HashTable(object):
 
     def values(self):
         """Return a list of all values in this hash table.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        TODO: Running time: O(N*M) (N = # buckets, M = # items in bucket) 
+        Why and under what conditions?: under all conditions because it adds all the values"""
         # TODO: Loop through all buckets
         # TODO: Collect all values in each bucket
         all_values = []
@@ -47,7 +49,8 @@ class HashTable(object):
 
     def items(self):
         """Return a list of all items (key-value pairs) in this hash table.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        TODO: Running time: O(N) where N = # items in bucket 
+        Why and under what conditions? all conditions since we add all the items"""
         # Collect all pairs of key-value entries in each bucket
         all_items = []
         for bucket in self.buckets:
@@ -56,7 +59,8 @@ class HashTable(object):
 
     def length(self):
         """Return the number of key-value entries by traversing its buckets.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        TODO: Running time: O(N) where N is the length of items in the bucket
+        Why and under what conditions?: All conditions because we need to loop through all the elements"""
         # TODO: Loop through all buckets
         # TODO: Count number of key-value entries in each bucket
         total = 0
@@ -68,6 +72,7 @@ class HashTable(object):
     def find(self, key):
         # helper function to check if checking (key, val) == (key we are looking for)
         # data is a tuple (key, val)
+        # O(N) because of the find function
         index = self._bucket_index(key)
         def quality(data):
             return data[0] == key
@@ -76,7 +81,8 @@ class HashTable(object):
 
     def contains(self, key):
         """Return True if this hash table contains the given key, or False.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        TODO: Running time: O(N) because the find function is O(N)
+        Why and under what conditions?: When the element is at the end of the bucket"""
         # TODO: Find bucket where given key belongs
         # TODO: Check if key-value entry exists in bucket
         result = self.find(key)
@@ -86,7 +92,8 @@ class HashTable(object):
 
     def get(self, key):
         """Return the value associated with the given key, or raise KeyError.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        TODO: Running time: O(N) because the find function
+         Why and under what conditions?: when the element is at the end of the bucket"""
         # TODO: Find bucket where given key belongs
         # tuple
         bucket = self.find(key)
@@ -101,7 +108,8 @@ class HashTable(object):
 
     def set(self, key, value):
         """Insert or update the given key with its associated value.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        TODO: Running time: O(N) because find/replace functions
+         Why and under what conditions?: when element is at the end of the bucket"""
         # TODO: Find bucket where given key belongs
         bucket = self.find(key)
         index = self._bucket_index(key)
@@ -118,7 +126,8 @@ class HashTable(object):
 
     def delete(self, key):
         """Delete the given key from this hash table, or raise KeyError.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        TODO: Running time: O(N) 
+        Why and under what conditions?: when the element is at the end of the bucket"""
         # TODO: Find bucket where given key belongs
         bucket = self.find(key)
         index = self._bucket_index(key)

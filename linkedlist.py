@@ -55,7 +55,7 @@ class LinkedList(object):
 
     def length(self):
         """Return the length of this linked list by traversing its nodes.
-        Q1: Running time: O(???) Why and under what conditions?
+        Q1: Running time: O(1) Why and under what conditions?
         O(N) because needs to count all the elements, thus loop through entire list"""
         # Loop through all nodes and count one for each
         # curr = self.head
@@ -159,6 +159,7 @@ class LinkedList(object):
 
     def replace(self, item, new_item):
         # replace an item in linked list
+        # O(N) worst case
         curr = self.head
         # iterate over list to find node holding item
         while (curr != None):
@@ -166,10 +167,13 @@ class LinkedList(object):
             if (curr.data == item):
                 # change its value
                 curr.data = new_item
-                break
+                # end function if item is replaced
+                return
             # check next node
             curr = curr.next
-        return
+        
+        # item not found
+        raise ValueError('Item not found: {}'.format(item))
 
 def test_linked_list():
     ll = LinkedList()
