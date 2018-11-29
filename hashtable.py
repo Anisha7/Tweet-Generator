@@ -39,8 +39,8 @@ class HashTable(object):
         """Return a list of all values in this hash table.
         TODO: Running time: O(N*M) (N = # buckets, M = # items in bucket) 
         Why and under what conditions?: under all conditions because it adds all the values"""
-        # TODO: Loop through all buckets
-        # TODO: Collect all values in each bucket
+        # Loop through all buckets
+        # Collect all values in each bucket
         all_values = []
         for bucket in self.buckets:
             for key, value in bucket.items():
@@ -60,11 +60,13 @@ class HashTable(object):
     def length(self):
         """Return the number of key-value entries by traversing its buckets.
         TODO: Running time: O(N) where N is the length of items in the bucket
-        Why and under what conditions?: All conditions because we need to loop through all the elements"""
-        # TODO: Loop through all buckets
-        # TODO: Count number of key-value entries in each bucket
+        Why and under what conditions?: All conditions because we need to loop 
+        through all the elements"""
+        
         total = 0
+        # Loop through all buckets
         for i in range(len(self.buckets)):
+            # Count number of key-value entries in each bucket
             total += self.buckets[i].length()
         return total
     
@@ -83,10 +85,10 @@ class HashTable(object):
         """Return True if this hash table contains the given key, or False.
         TODO: Running time: O(N) because the find function is O(N)
         Why and under what conditions?: When the element is at the end of the bucket"""
-        # TODO: Find bucket where given key belongs
-        # TODO: Check if key-value entry exists in bucket
+        # Find bucket where given key belongs
         result = self.find(key)
         if (result != None):
+            # Check if key-value entry exists in bucket
             return True
         return False
 
@@ -94,15 +96,13 @@ class HashTable(object):
         """Return the value associated with the given key, or raise KeyError.
         TODO: Running time: O(N) because the find function
          Why and under what conditions?: when the element is at the end of the bucket"""
-        # TODO: Find bucket where given key belongs
-        # tuple
-        bucket = self.find(key)
-        # TODO: Check if key-value entry exists in bucket
-        # TODO: If found, return value associated with given key
+        # Find bucket where given key belongs
+        bucket = self.find(key) # tuple (key, val)
+        # Check if key-value entry exists in bucket
         if (bucket != None):
+            # If found, return value associated with given key
             return bucket[1]
-        # TODO: Otherwise, raise error to tell user get failed
-        # Hint: raise KeyError('Key not found: {}'.format(key))
+        # tell user get failed
         else:
             raise KeyError('Key not found: {}'.format(key))
 
@@ -110,15 +110,15 @@ class HashTable(object):
         """Insert or update the given key with its associated value.
         TODO: Running time: O(N) because find/replace functions
          Why and under what conditions?: when element is at the end of the bucket"""
-        # TODO: Find bucket where given key belongs
+        # Find bucket where given key belongs
         bucket = self.find(key)
         index = self._bucket_index(key)
-        # TODO: Check if key-value entry exists in bucket
-        # TODO: If found, update value associated with given key
+        # Check if key-value entry exists in bucket
         if (bucket != None):
+            # If found, update value associated with given key
             self.buckets[index].replace(bucket, (key, value))
             return
-        # TODO: Otherwise, insert given key-value entry into bucket
+        # else, insert given key-value entry into bucket
         else:
             self.buckets[index].append((key, value))
 
@@ -128,16 +128,15 @@ class HashTable(object):
         """Delete the given key from this hash table, or raise KeyError.
         TODO: Running time: O(N) 
         Why and under what conditions?: when the element is at the end of the bucket"""
-        # TODO: Find bucket where given key belongs
+        # Find bucket where given key belongs
         bucket = self.find(key)
         index = self._bucket_index(key)
-        # TODO: Check if key-value entry exists in bucket
-        # TODO: If found, delete entry associated with given key
+        # Check if key-value entry exists in bucket
         if (bucket != None):
+            # If found, delete entry associated with given key
             self.buckets[index].delete(bucket)
             return
-        # TODO: Otherwise, raise error to tell user delete failed
-        # Hint: raise KeyError('Key not found: {}'.format(key))
+        # tell user delete failed
         else:
             raise KeyError('Key not found: {}'.format(key))            
 
