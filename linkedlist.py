@@ -51,6 +51,7 @@ class LinkedList(object):
 
     def is_empty(self):
         """Return a boolean indicating whether this linked list is empty."""
+        # O(1)
         return self.head is None
 
     def length(self):
