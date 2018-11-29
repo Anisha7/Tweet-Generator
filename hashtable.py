@@ -59,23 +59,26 @@ class HashTable(object):
         TODO: Running time: O(???) Why and under what conditions?"""
         # TODO: Loop through all buckets
         # TODO: Count number of key-value entries in each bucket
-        return self.buckets.length()
+        total = 0
+        for i in range(len(self.buckets)):
+            total += self.buckets[i].length()
+        return total
     
     # find bucket where a key belongs
     def find(self, key):
         # helper function to check if checking (key, val) == (key we are looking for)
         # data is a tuple (key, val)
+        index = self._bucket_index(key)
         def quality(data):
             return data[0] == key
         
-        return self.buckets.find(quality)
+        return self.buckets[index].find(quality)
 
     def contains(self, key):
         """Return True if this hash table contains the given key, or False.
         TODO: Running time: O(???) Why and under what conditions?"""
         # TODO: Find bucket where given key belongs
         # TODO: Check if key-value entry exists in bucket
-        
         result = self.find(key)
         if (result != None):
             return True
@@ -101,24 +104,28 @@ class HashTable(object):
         TODO: Running time: O(???) Why and under what conditions?"""
         # TODO: Find bucket where given key belongs
         bucket = self.find(key)
+        index = self._bucket_index(key)
         # TODO: Check if key-value entry exists in bucket
         # TODO: If found, update value associated with given key
         if (bucket != None):
-            self.buckets.replace(bucket, (key, value))
+            self.buckets[index].replace(bucket, (key, value))
             return
         # TODO: Otherwise, insert given key-value entry into bucket
         else:
-            self.buckets.append((key, value))
+            self.buckets[index].append((key, value))
+
+        print(str(self.buckets))
 
     def delete(self, key):
         """Delete the given key from this hash table, or raise KeyError.
         TODO: Running time: O(???) Why and under what conditions?"""
         # TODO: Find bucket where given key belongs
         bucket = self.find(key)
+        index = self._bucket_index(key)
         # TODO: Check if key-value entry exists in bucket
         # TODO: If found, delete entry associated with given key
         if (bucket != None):
-            self.buckets.delete(bucket)
+            self.buckets[index].delete(bucket)
             return
         # TODO: Otherwise, raise error to tell user delete failed
         # Hint: raise KeyError('Key not found: {}'.format(key))
