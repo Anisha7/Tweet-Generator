@@ -6,7 +6,8 @@ import random
 # returns a random word
 def getRandomWord(histogram):
     index = random.randint(0, len(histogram.keys()) - 1)
-    return (histogram.keys())[index]
+    print(histogram.keys())
+    return (histogram.keys())[0][index]
 
 # takes in a histogram and length of the sentence
 def makeSentence(histogram, n):
