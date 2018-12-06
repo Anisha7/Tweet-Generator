@@ -49,12 +49,12 @@ class HashTable(object):
 
     def items(self):
         """Return a list of all items (key-value pairs) in this hash table.
-        TODO: Running time: O(N) where N = # items in bucket 
+        TODO: Running time: O(N*M)
         Why and under what conditions? all conditions since we add all the items"""
         # Collect all pairs of key-value entries in each bucket
         all_items = []
-        for bucket in self.buckets:
-            all_items.extend(bucket.items())
+        for bucket in self.buckets: # O(M = # buckets)
+            all_items.extend(bucket.items()) # O(2N = # items in bucket)
         return all_items
 
     def length(self):
