@@ -10,11 +10,11 @@ from dictogram import Dictogram
 # takes in a string corpus and converts it to a 2nd order markov chain
 class MarkovChain(Dictogram) :
 
-    def __init__(self, items=None, word_list=None, n = 2):
+    def __init__(self, items=None, n = 2):
         super(MarkovChain, self).__init__()
         # key: (I, went) -> value {dict} ({(went, left):2/3, (went,right):1/3})
         self.order = n
-        self.items = word_list
+        self.items = items
         self.append()
 
     def find(self, curr):
@@ -43,7 +43,7 @@ class MarkovChain(Dictogram) :
         # queue to tuple
         while (temp_queue.isEmpty() == False):
             result_list.append(temp_queue.dequeue())
-
+        #print(tuple(result_list))
         return tuple(result_list)
 
         
@@ -76,4 +76,8 @@ class MarkovChain(Dictogram) :
             # add our key as a key pointing to an empty dict
             self[key] = Dictogram()
 
-
+    def printMarkov(self):
+        for key in self.keys():
+            print(key, ': ', self[key])
+            
+        return
