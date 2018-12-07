@@ -10,7 +10,7 @@ from dictogram import Dictogram
 # takes in a string corpus and converts it to a 2nd order markov chain
 class MarkovChain(Dictogram) :
 
-    def __init__(self, items=None, word_list, n = 2):
+    def __init__(self, items=None, word_list=None, n = 2):
         super(MarkovChain, self).__init__()
         # key: (I, went) -> value {dict} ({(went, left):2/3, (went,right):1/3})
         self.order = n
@@ -30,11 +30,14 @@ class MarkovChain(Dictogram) :
 
         # init queue
         n = self.order
-        while (n != 0 && index > 0 && index < len(self.items)) {
+        
+        while (n != 0) :
+            if (index >= len(self.items)):
+                break
             temp_queue.enqueue(self.items[index])
             index += 1
             n -= 1
-        }
+        
 
         result_list = []
         # queue to tuple
@@ -54,7 +57,7 @@ class MarkovChain(Dictogram) :
             # key = (word_list[i], word_list[i+1])
             key = self.get_tuple(i)
             # add tuple as the dict value to the key that has 'prev' as its tuple[1] element
-            prev_key = self.find(word_list[i])
+            prev_key = self.find(self.items[i])
             if prev_key != None:
                 # check its values
                 d = self[prev_key]
