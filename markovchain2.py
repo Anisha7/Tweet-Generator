@@ -58,17 +58,17 @@ class MarkovChain(Dictogram) :
             if prev_key != None:
                 # check its values
                 d = self[prev_key]
-                result = d.get(value)
+                result = d.get(key)
                 # if our key exists in values
                 if (result != None):
                     # increment count
                     # self[prev_key][value] += 1
-                    self[prev_key].add_count(value)
+                    self[prev_key].add_count(key)
                 # else
                 else:
                     # add it with count 1
                     # self[prev_key][value] = 1
-                    self[prev_key].add_count(value, 1)
+                    self[prev_key].add_count(key, 1)
 
             # add our key as a key pointing to an empty dict
             self[key] = Dictogram()
