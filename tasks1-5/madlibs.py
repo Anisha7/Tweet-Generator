@@ -22,9 +22,11 @@ def run():
     while (gameState == 'Y' or gameState == 'y') :
         sentence= getRandomSentence()
         print(sentence)
+        print(' ')
         word = input("fill in the blank: ")
         sentence = sentence.replace('__________', word)
         print(sentence)
         gameState = input("Do you want to play again? (Y/N) : ")
+        print(' ')
 
 run()
