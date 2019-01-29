@@ -175,7 +175,7 @@ class LinkedList(object):
         
         # item not found
         #raise ValueError('Item not found: {}'.format(item))
-        return
+        return 
 
 def test_linked_list():
     ll = LinkedList()
